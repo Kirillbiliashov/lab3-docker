@@ -2,9 +2,10 @@ FROM python:3.8-slim-buster
 
 WORKDIR /app
 
+COPY requirements/backend.in .
+
+RUN pip install -r backend.in
+
 COPY . .
-
-RUN pip install -r requirements/backend.in
-
 
 CMD ["uvicorn", "spaceship.main:app", "--host=0.0.0.0", "--port=8080"]
