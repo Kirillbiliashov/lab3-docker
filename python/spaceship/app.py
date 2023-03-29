@@ -5,6 +5,8 @@ from starlette.responses import FileResponse
 from spaceship.config import Settings
 from spaceship.routers import api, health
 
+import numpy as np
+
 
 def make_app(settings: Settings) -> FastAPI:
     app = FastAPI(
@@ -24,5 +26,17 @@ def make_app(settings: Settings) -> FastAPI:
     @app.get('/', include_in_schema=False, response_class=FileResponse)
     async def root() -> str:
         return 'build/index.html'
+
+   @app.get('/matrix')
+    def multiply_matrices():
+    matrix1 = np.random.rand(10, 10)
+    matrix2 = np.random.rand(10, 10)
+    product = np.dot(matrix1, matrix2)
+    result = {
+         "matrix_a": matrix1.tolist(),
+         "matrix_b": matrix2.tolist(),
+         "product": product.tolist()
+     }
+    return result	
 
     return app
