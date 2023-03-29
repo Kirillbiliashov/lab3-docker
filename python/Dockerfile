@@ -1,10 +1,12 @@
-FROM python:3.8-alpine
+FROM python:alpine
+
+RUN apk add --no-cache  gcc gfortran lapack-dev musl-dev g++
 
 WORKDIR /app
 
 COPY requirements/backend.in .
 
-RUN pip install -r backend.in
+RUN pip install --no-cache-dir -r backend.in
 
 COPY . .
 
