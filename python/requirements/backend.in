@@ -1,4 +1,7 @@
-fastapi
-pydantic
-starlette
-uvicorn[standard]
+
+fastapi==0.95.0
+numpy==1.24.2
+pydantic==1.10.6
+starlette==0.26.1
+uvicorn==0.21.1
+
